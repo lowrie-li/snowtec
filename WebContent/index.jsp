@@ -49,7 +49,7 @@
 <div class="header">
     <div class="headerco">
         <div class="logo" align="left">
-            <a href="index.jsp">
+            <a href="www.sznotec.com">
                 <img src="./images/logo.jpg" alt="深圳市欣诺泰电子有限公司 （总部）"></a>
         </div>
     </div>

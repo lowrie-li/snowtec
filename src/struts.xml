@@ -9,7 +9,7 @@
 	<constant name="struts.i18n.encoding" value="utf-8" />
 	<package name="default" namespace="/" extends="struts-default">
 		<default-action-ref name="index" />
-<!-- 		<global-results>
+<!--  		<global-results>
 			<result name="error">/failed.jsp </result>
 			<result name="success">/success.jsp </result>
 		</global-results> -->
@@ -17,9 +17,6 @@
 			<exception-mapping exception="java.lang.Exception"
 				result="error" />
 		</global-exception-mappings> 
-		<action name="ajaxaction" class="com.snowtec.AjaxAction" method="ajax">
-			<result name="success">/workboard.jsp</result>
-		</action>
 		<action name="loginAction" class="com.snowtec.LoginAction" method="execute">
 			<result name="success">/workboard.jsp</result>
 		</action>
