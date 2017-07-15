@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	var xmlhttp = null;
-	var url = "ajaxaction"
+	var url = "login"
 	function loadXMLDoc() {
 		
 		if (window.XMLHttpRequest) {// code for all new browsers
@@ -23,7 +23,7 @@
 
 	function state_Change() {
 		if (xmlhttp.readyState == 4) {// 4 = "loaded"
- 			alert(xmlhttp.status);
+ //			alert(xmlhttp.status);
 			if (xmlhttp.status == 200) {// 200 = OK
 			//	alert(xmlhttp.responseText);
 				document.getElementById("showview").innerHTML=xmlhttp.responseText;

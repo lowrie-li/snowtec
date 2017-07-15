@@ -20,19 +20,6 @@
     <link rel="stylesheet" type="text/css" href="easyui/themes/default/dialog.css">
 	<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
 	<script>
-	function validateInput() {
-		var id=this.userid.value;
-		var pwd=this.userpwd.value;
-		var empty=true;
-		if(id && pwd) {
-			empty=false;
-		}
-		if(empty) {
-			alert("账号／密码不能为空，请重新输入");
-			return false;
-		}
-	}
-	
 	function init() {
 		<% 
 		String UID = (String)request.getSession().getAttribute("UID");
@@ -48,7 +35,34 @@
 			alert("用户未登录，请登录后使用");
 			window.location.href = "index.jsp"
 		}
+	}
+
+	var xmlhttp = null;
+	var url = "ajaxaction"
+	function loadXMLDoc() {
 		
+		if (window.XMLHttpRequest) {// code for all new browsers
+			xmlhttp = new XMLHttpRequest();
+		} else if (window.ActiveXObject) {// code for IE5 and IE6
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		if (xmlhttp != null) {
+			xmlhttp.onreadystatechange = state_Change;
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send(null);
+		}
+	}
+
+	function state_Change() {
+		if (xmlhttp.readyState == 4) {// 4 = "loaded"
+ //			alert(xmlhttp.status);
+			if (xmlhttp.status == 200) {// 200 = OK
+			//	alert(xmlhttp.responseText);
+				document.getElementById("showview").innerHTML=xmlhttp.responseText;
+			} else {
+				alert("Problem retrieving XML data"); 
+			}
+		}
 	}
 	</script>
 </head>
@@ -65,6 +79,9 @@
 <div> 
 <fieldset>
 <legend>工作面板</legend>
+<button onclick="loadXMLDoc();">ajax</button>
+<div id="showview">
+</div>
 </fieldset>
 </div>
 </body>

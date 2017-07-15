@@ -57,7 +57,7 @@
 <div style="background-color:lightblue;" align="center">
   <br>
   <p> 用户登录 </p>
-  <form name="loginForm" onsubmit="return validateInput()" action="loginServlet" method="post">
+  <form name="loginForm" onsubmit="return validateInput()" action="loginAction" method="post">
   	账号：<input type="text" name="userid" id="userid" maxlength="10" placeholder="用户账号"/><span id="idhint"></span><br>
   	密码：<input type="password" name="userpwd" id="userpwd" maxlength="10" placeholder="6-10位密码" /><span id="pwdhint"></span><br>
   	<input type="submit" name="submit" value=" 登 录 "/><br>

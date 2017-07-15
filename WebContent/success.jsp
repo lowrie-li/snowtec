@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.sql.*,java.io.*,java.util.*"%>
+<%@ page language="java" import="java.sql.*,java.io.*,java.util.*, com.snowtec.*"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <!DOCTYPE HTML>
 <html>
@@ -18,22 +18,9 @@ td,th {
 <body>
 	<%
 		//驱动程序名 
-		String driverName = "com.mysql.jdbc.Driver";
-		//数据库用户名 
-		String userName = "sinotech";
-		//密码 
-		String userPasswd = "sinotech";
-		//数据库名 
-		String dbName = "sinotech";
-		//表名 
-		String tableName = "UserRole";
-		//联结字符串 
-		String url = "jdbc:mysql://localhost:3306/sinotech";
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection connection = DriverManager.getConnection(url, userName, userPasswd);
-		Statement statement = connection.createStatement();
-		String sql = "SELECT * FROM " + tableName;
-		ResultSet rs = statement.executeQuery(sql);
+		String sql_str = "select * from UserRole";
+		DbConnection dbconn = new DbConnection();
+		ResultSet rs = dbconn.ExecuteSQL(sql_str);
 	%>
 	<br>
 	<br>
@@ -88,8 +75,6 @@ td,th {
 	</div>
 	<%
 		rs.close();
-		statement.close();
-		connection.close();
 	%>
 </body>
 </html>
