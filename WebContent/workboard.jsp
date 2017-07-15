@@ -45,8 +45,6 @@
 			alert("欢迎登录Snowtec工作面板");
 			return true;
 		} else {
-			alert(uid);
-			alert(logged);
 			alert("用户未登录，请登录后使用");
 			window.location.href = "index.jsp"
 		}
