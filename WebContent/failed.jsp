@@ -10,15 +10,6 @@
     <meta name="Keywords" content="深圳市欣诺泰电子有限公司" />
     <meta name="Description" content="深圳市欣诺泰电子有限公司" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	
-	<script type="text/javascript" src="WEB-INF/easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="WEB-INF/easyui/jquery.min.js"></script>
-    
-    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="easyui/themes/default/datagrid.css">
-    <link rel="stylesheet" type="text/css" href="easyui/themes/default/linkbutton.css">
-    <link rel="stylesheet" type="text/css" href="easyui/themes/default/dialog.css">
-	<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
 	<script>
 	function validateInput() {
 		var id=this.userid.value;
@@ -53,7 +44,7 @@
 <div class="header">
     <div class="headerco">
         <div class="logo" align="left">
-            <a href="index.jsp">
+            <a href="www.sznotec.com">
                 <img src="./images/logo.jpg" alt="深圳市欣诺泰电子有限公司 （总部）"></a>
         </div>
     </div>

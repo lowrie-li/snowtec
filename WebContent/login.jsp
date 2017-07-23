@@ -10,15 +10,11 @@
     <meta name="Keywords" content="深圳市欣诺泰电子有限公司" />
     <meta name="Description" content="深圳市欣诺泰电子有限公司" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	
-	<script type="text/javascript" src="WEB-INF/easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="WEB-INF/easyui/jquery.min.js"></script>
-    
-    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="easyui/themes/default/datagrid.css">
-    <link rel="stylesheet" type="text/css" href="easyui/themes/default/linkbutton.css">
-    <link rel="stylesheet" type="text/css" href="easyui/themes/default/dialog.css">
-	<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    	
+    <script src="easyui/jquery.min.js" type="text/javascript"></script>
+	<script src="easyui/jquery.easyui.min.js" type="text/javascript"></script>
+	<link href="easyui/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+	<link href="easyui/themes/icon.css" rel="stylesheet" type="text/css" />
 	<script>
 	function validateInput() {
 		var id=this.userid.value;
@@ -49,17 +45,16 @@
 <div class="header">
     <div class="headerco">
         <div class="logo" align="left">
-            <a href="www.sznotec.com">
+            <a href="http://www.sznotec.com">
                 <img src="./images/logo.jpg" alt="深圳市欣诺泰电子有限公司 （总部）"></a>
         </div>
     </div>
 </div>
 <div style="background-color:lightblue;" align="center">
-  <br>
-  <p> 用户登录 </p>
+<div><br>用户登录<br><br></div>
   <form name="loginForm" onsubmit="return validateInput()" action="loginAction" method="post">
-  	账号：<input type="text" name="userid" id="userid" maxlength="10" placeholder="用户账号"/><span id="idhint"></span><br>
-  	密码：<input type="password" name="userpwd" id="userpwd" maxlength="10" placeholder="6-10位密码" /><span id="pwdhint"></span><br>
+   	账号：<input type="text" name="userid" id="userid" class="easyui-validatebox" required="true" maxlength="10" placeholder="用户账号"/><br>
+  	密码：<input type="password" name="userpwd" id="userpwd" class="easyui-validatebox" required="true" maxlength="10" placeholder="6-10位密码" /><br>
   	<input type="submit" name="submit" value=" 登 录 "/><br>
   	<span>新用户请<a href="register.jsp">注册</a>后登录</span>
   </form>

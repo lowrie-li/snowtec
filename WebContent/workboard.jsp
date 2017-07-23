@@ -21,7 +21,7 @@
 				$('#home').tabs('select', title);
 			} else {
 				var content = '<iframe scrolling="auto" frameborder="0" src="'
-						+ url + '" style="width:100%;height:100%;"></iframe>';
+						+ url + '" style="width:1200px;height:800px;"></iframe>';
 				$('#home').tabs('add', {
 					title : title,
 					content : content,
@@ -30,9 +30,9 @@
 			}
 		}
 	
-		$(document).ready(function() {
+/* 		$(document).ready(function() {
 	
-		});
+		}); */
 	</script>
 	<style>
 	.footer {
@@ -61,7 +61,7 @@
 			return true;
 		} else {
 			alert("用户未登录，请登录后使用");
-			window.location.href = "index.jsp"
+			window.location.href = "login.jsp"
 		}
 	}
 	</script>
@@ -83,68 +83,60 @@
 		</div>
 	</div>
 
-	<div region="west" split="true" title="功能菜单" style="width: 200px;">
+	<div region="west" split="true" title="工作面板" style="width: 150px;">
 
-		<div id="aa" class="easyui-accordion"
+		<div id="menu" class="easyui-accordion"
 			style="position: absolute; top: 27px; left: 0px; right: 0px; bottom: 0px;">
 
-			<div title="工作面板" selected="true"
-				style="overflow: auto; padding: 10px;">
+			<div title="个人事务" style="padding: 10px;">
 				<ul class="easyui-tree">
-					<li><a href="#" onclick="addTab('销售管理','list')">用户玩家</a></li>
+					<li><a href="#" onclick="addTab('通知公告','success.jsp')">通知公告</a></li>
+					<li><a href="#" onclick="addTab('备忘录','add')">备忘录</a></li>
+					<li><a href="#" onclick="addTab('通讯簿','add')">通讯簿</a></li>
+					<li><a href="#" onclick="addTab('其他','add')">其他</a></li>
 				</ul>
 			</div>
 
 			<div title="销售管理" style="padding: 10px;">
 				<ul class="easyui-tree">
-					<li><a href="#" onclick="addTab('库存管理','add')">添加用户</a></li>
+					<li><a href="#" onclick="addTab('销售报表','SalesRpt')">销售报表</a></li>
+					<li><a href="#" onclick="addTab('客户管理','CustomCrud.jsp')">客户管理</a></li>
+					<li><a href="#" onclick="addTab('订单管理','InIndentCrud')">订单管理</a></li>
 				</ul>
 			</div>
 
 			<div title="库存管理" style="padding: 10px;">
 				<ul class="easyui-tree">
-					<li><a href="#" onclick="addTab('客户管理','delete')">删除用户</a></li>
-				</ul>
-			</div>
-			<div title="采购管理" style="padding: 10px;">
-				<ul class="easyui-tree">
-					<li><a href="#" onclick="addTab('修改用户','update')">修改用户</a></li>
-				</ul>
-			</div>
-			<div title="客户管理" style="padding: 10px;">
-				<ul class="easyui-tree">
-					<li><a href="#" onclick="addTab('修改用户','update')">修改用户</a></li>
-				</ul>
-			</div>
-			<div title="供应商管理" style="padding: 10px;">
-				<ul class="easyui-tree">
-					<li><a href="#" onclick="addTab('修改用户','update')">修改用户</a></li>
+					<li><a href="#" onclick="addTab('库存概览','WarehouseRpt')">库存概览</a></li>
+					<li><a href="#" onclick="addTab('供应商管理','SupplierCrud')">供应商管理</a></li>
+					<li><a href="#" onclick="addTab('产品管理','ProductCrud')">产品管理</a></li>
+					<li><a href="#" onclick="addTab('采购订单','OutIndentCrud')">采购订单</a></li>
+					<li><a href="#" onclick="addTab('库存管理','WarehourseCrud')">仓库管理</a></li>
 				</ul>
 			</div>
 			<div title="人事管理" style="padding: 10px;">
 				<ul class="easyui-tree">
-					<li><a href="#" onclick="addTab('修改用户','update')">修改用户</a></li>
+					<li><a href="#" onclick="addTab('个人信息','PersonalInfo')">个人信息</a></li>
+					<li><a href="#" onclick="addTab('团队建设','TeamCrud')">团队建设</a></li>
+					<li><a href="#" onclick="addTab('考勤管理','AttendceCrud')">考勤管理</a></li>
+					<li><a href="#" onclick="addTab('绩效考评','KPICrud')">绩效考评</a></li>
 				</ul>
 			</div>
 			<div title="财务管理" style="padding: 10px;">
 				<ul class="easyui-tree">
-					<li><a href="#" onclick="addTab('修改用户','update')">修改用户</a></li>
-				</ul>
-			</div>
-			<div title="供应商管理" style="padding: 10px;">
-				<ul class="easyui-tree">
-					<li><a href="#" onclick="addTab('修改用户','update')">修改用户</a></li>
-				</ul>
-			</div>
-			<div title="个人信息管理" style="padding: 10px;">
-				<ul class="easyui-tree">
-					<li><a href="#" onclick="addTab('修改用户','update')">修改用户</a></li>
+					<li><a href="#" onclick="addTab('费用报销','ExspenseCrud')">费用报销</a></li>
+					<li><a href="#" onclick="addTab('应收账款','RecievalbeCrud')">应收账款</a></li>
+					<li><a href="#" onclick="addTab('应付账款','PayableCrud')">应付账款</a></li>
+					<li><a href="#" onclick="addTab('财务报表','FinancialRpt')">财务报表</a></li>
+					<li><a href="#" onclick="addTab('账户管理','AccountCrud')">账户管理</a></li>
+					<li><a href="#" onclick="addTab('流水管理','FundflowCrud')">流水管理</a></li>
+					<li><a href="#" onclick="addTab('经费计划','PlanCrud')">经费计划</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 
-	<div id="mainPanle" region="center" style="overflow: hidden;">
+	<div id="mainPanle" region="center" style="overflow: scroll">
 
 		<div id="home" class="easyui-tabs" style="width: 1300px; height: 800px;">
 			<div title="Home">Hello,welcome to use this system.</div>
