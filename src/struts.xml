@@ -17,10 +17,10 @@
 			<exception-mapping exception="java.lang.Exception"
 				result="error" />
 		</global-exception-mappings> 
-		<action name="ajaxAction" class="com.snowtec.AjaxAction" method="json">
+		<action name="ajaxAction" class="com.snowtec.AjaxAction" method="search">
 			<result name="success">/success.jsp</result>
 		</action>
-				<action name="addCustomer" class="com.snowtec.AjaxAction" method="add">
+		<action name="addCustomer" class="com.snowtec.AjaxAction" method="add">
 			<result name="success">/success.jsp</result>
 		</action>
 		<action name="searchCustomer" class="com.snowtec.AjaxAction" method="search">

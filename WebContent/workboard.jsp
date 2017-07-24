@@ -30,9 +30,9 @@
 			}
 		}
 	
-/* 		$(document).ready(function() {
+ 		$(document).ready(function() {
 	
-		}); */
+		});
 	</script>
 	<style>
 	.footer {
@@ -79,7 +79,7 @@
 	<div region="south" border="true" split="true"
 		style="overflow: hidden; height: 40px;">
 		<div class="footer">
-			版权所有：<a href="http://www.sznotec.com/">深圳市新诺泰电子有限公司</a>
+			版权所有：<a href="http://www.sznotec.com/">深圳市欣诺泰电子有限公司</a>
 		</div>
 	</div>
 

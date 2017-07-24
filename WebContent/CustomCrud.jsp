@@ -21,11 +21,9 @@
 	function InitGrid(queryData) {
 	    $('#grid').datagrid({   //定位到Table标签，Table标签的ID是grid
 	        url: 'ajaxAction',   //指向后台的Action来获取当前菜单的信息的Json格式的数据
-	        contentType: "application/json",
+/* 	        contentType: "application/json", */
 	        title: '客户列表',
 	        iconCls: 'icon-view',
-/* 	        height: 650,
-	        width: function () { return document.body.clientWidth * 0.9 }, */
 	        nowrap: true,
 	        autoRowHeight: false,
 	        fitColumns:false,
@@ -35,10 +33,10 @@
 	        pageSize: 20,
 	        pageList: [20,50,100],
 	        rownumbers: true,
-	        sortName: 'compSno',    //根据某个字段给easyUI排序
+	        sortName: 'shrtName',    //根据某个字段给easyUI排序
 	        sortOrder: 'asc',
 	        remoteSort: false,
-	        idField: 'compSno',
+/* 	        idField: 'compSno', */
 	        queryParams: queryData,  //异步查询的参数
 	        singleSelect:true,
 	        columns: [[
@@ -74,6 +72,7 @@
 	            iconCls: 'icon-remove',
 	            handler: function () {
 	            	ConfirmDeleteDlg();//实现直接删除数据的方法
+	            	$("#grid").datagrid("reload");
 	            }
 	        }, '-', {
 	            id: 'btnView',
@@ -106,8 +105,19 @@
 	};
 	
 	function ConfirmDeleteDlg(){
-		$("#btnAdd").click(function () {  
-		    $('#cusDlg').dialog({title:"删除客户"}).dialog('open');
+		$("#btnDelete").click(function () {  
+	        var rows = $('#grid').datagrid('getSelections');
+			if (rows.length>0) {
+				$.messager.confirm('Confirm', '确定删除用户?', function(r) {
+					if (r) {
+						$.post('deleteCustomer', {
+							id : string
+						}, function(result) {
+							$('#dg').datagrid('reload');
+						});
+					}
+				});
+			}
 		});
 	};
 	
@@ -118,17 +128,17 @@
 	        	$.messager.alert("提示", "请选中一行进行编辑！")
 	        } else if (rows.length == 1) {
 		        var row = rows[0];
-		        $('#f2i1').val(row.compName);
-		        $('#f2i1').attr("readOnly", "true");  
-		        $('#f2i2').val(row.shrtName);
- 		        $('#f2i2').attr("readOnly", "true");   
-		        $('#f2i3').val(row.compTel);
-		        $('#f2i4').val(row.compAddr);
-		        $('#f2i5').val(row.cnntName);
-		        $('#f2i6').val(row.cnntPhone);
-		        $('#f2i7').val(row.position);
-		        $('#f2i8').val(row.specialist);
-		        $('#f2i9').val(row.cmnt);
+		        $('#compName').val(row.compName);
+		        $('#compName').attr("readOnly", "true");  
+		        $('#shrtName').val(row.shrtName);
+ 		        $('#shrtName').attr("readOnly", "true");   
+		        $('#compTel').val(row.compTel);
+		        $('#compAddr').val(row.compAddr);
+		        $('#cnntName').val(row.cnntName);
+		        $('#cnntPhone').val(row.cnntPhone);
+		        $('#position').val(row.position);
+		        $('#specialist').val(row.specialist);
+		        $('#cmnt').val(row.cmnt);
 	            $('#cusDlg').dialog({title:"编辑客户信息"}).dialog('open');
 	        } else {  
 	            $.messager.alert("提示", "请选中要编辑的行! 或者双击该行进行编辑！");  
@@ -137,31 +147,31 @@
 	};
 	
 	function checkCustomInfo() {
-		if ($('#f2i1').val() == null || $('#f2i1').val() == "") {
+		if ($('#compName').val() == null || $('#compName').val() == "") {
 			alert("请填写客户名！");
 			return false;
 		}
- 		if ($('#f2i2').val() == null || $('#f2i2').val() == "") {
+ 		if ($('#shrtName').val() == null || $('#shrtName').val() == "") {
 			alert("请填写客户编码！");
 			return false;
 		}
-		if ($('#f2i3').val() == null || $('#f2i3').val() == "") {
+		if ($('#compTel').val() == null || $('#compTel').val() == "") {
 			alert("请填写客户电话！");
 			return false;
 		}
-		if ($('#f2i4').val() == null || $('#f2i4').val() == "") {
+		if ($('#compAddr').val() == null || $('#compAddr').val() == "") {
 			alert("请填写客户地址！");
 			return false;
 		}
-		if ($('#f2i5').val() == null || $('#f2i5').val() == "") {
+		if ($('#cnntName').val() == null || $('#cnntName').val() == "") {
 			alert("请填写联系人！");
 			return false;
 		}
-		if ($('#f2i6').val() == null || $('#f2i6').val() == "") {
+		if ($('#cnntPhone').val() == null || $('#cnntPhone').val() == "") {
 			alert("请填写联系人电话！");
 			return false;
 		}
-		if ($('#f2i7').val() == null || $('#f2i7').val() == "") {
+		if ($('#position').val() == null || $('#position').val() == "") {
 			alert("请填写联系人职务！");
 			return false;
 		}
@@ -175,18 +185,18 @@
 <body  onload="InitGrid()">
 
 <div style="overflow:scroll">
-	<form method="post" action="searchCustomer">
+	<form method="post" onsubmit="return InitGrid()">
 	<fieldset>
 	<legend>客户信息检索 🔍</legend>
 		<table>
 			<tr>
 				<td>客户编码:</td>
-				<td><input class="easyui-validatebox" type="text" id=“f1i1” name="cId"/></td>
+				<td><input class="easyui-validatebox" type="text" id="cId" name="cId"/></td>
 				<td>客户名称：</td>
-				<td><input class="easyui-validatebox" type="text" id="f1i2" name="cName"/></td>
+				<td><input class="easyui-validatebox" type="text" id="cName" name="cName"/></td>
 				<td>业务员：</td>
-				<td><input class="easyui-validatebox" type="text" id="f1i3" name="sMan"/></td>
-				<td><input class="easyui-validatebox" type="submit" id="f1b1" value=" 搜 索 "/></td>
+				<td><input class="easyui-validatebox" type="text" id="sMan" name="sMan"/></td>
+				<td><input class="easyui-validatebox" type="submit" value=" 搜 索 "/></td>
 			</tr>
 		</table>
 	</fieldset>
@@ -200,39 +210,39 @@
 			<table>
 				<tr>
 					<td><label>客户名：</label></td>
-					<td><input name="compName" id="f2i1" maxlength="50" class="easyui-validatebox" required="true"></td>
+					<td><input name="compName" id="compName" maxlength="50" class="easyui-validatebox" required="true"></td>
 				</tr>
 				<tr>
 					<td><label>客户编号：</label></td>
-					<td><input name="shrtName" id="f2i2" maxlength="10" class="easyui-validatebox" required="true"></td>
+					<td><input name="shrtName" id="shrtName" maxlength="10" class="easyui-validatebox" required="true"></td>
 				</tr>
 				<tr>
 					<td><label>客户电话：</label></td>
-					<td><input name="tel" id="f2i3" maxlength="16" class="easyui-validatebox" required="true"></td>
+					<td><input name="compTel" id="compTel" maxlength="16" class="easyui-validatebox" required="true"></td>
 				</tr>
 				<tr>
 					<td><label>客户地址：</label></td>
-					<td><input name="compAddr" id="f2i4" maxlength="100" class="easyui-validatebox" required="true"></td>
+					<td><input name="compAddr" id="compAddr" maxlength="100" class="easyui-validatebox" required="true"></td>
 				</tr>
 				<tr>
 					<td><label>联络人:</label></td>
-					<td><input name="usher" id="f2i5" maxlength="10" class="easyui-validatebox" required="true"></td>
+					<td><input name="cnntName" id="cnntName" maxlength="10" class="easyui-validatebox" required="true"></td>
 				</tr>
 				<tr>
 					<td><label>联络人电话:</label></td>
-					<td><input name="usher" id="f2i6" maxlength="16" class="easyui-validatebox" required="true"></td>
+					<td><input name="cnntPhone" id="cnntPhone" maxlength="16" class="easyui-validatebox" required="true"></td>
 				</tr>
 				<tr>
 					<td><label>联络人职务:</label></td>
-					<td><input name="position" id="f2i7" maxlength="20" class="easyui-validatebox" required="true"></td>
+					<td><input name="position" id="position" maxlength="20" class="easyui-validatebox" required="true"></td>
 				</tr>
 				<tr>
 					<td><label>业务员:</label></td>
-					<td><input name="specialist" id="f2i8" maxlength="10" class="easyui-validatebox"></td>
+					<td><input name="specialist" id="specialist" maxlength="10" class="easyui-validatebox"></td>
 				</tr>
 				<tr>
 					<td><label>备注:</label></td>
-					<td><input name="cmnt" id="f2i9" maxlength="100" class="easyui-validatebox"></td>
+					<td><input name="cmnt" id="cmnt" maxlength="100" class="easyui-validatebox"></td>
 				</tr>
 				<tr>
 					<td><input type="submit" id="submit" value=" 添 加 "></td>

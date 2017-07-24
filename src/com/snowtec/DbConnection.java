@@ -48,7 +48,6 @@ public class DbConnection {
 			Class.forName(driverCls);
 			dbConn = DriverManager.getConnection(connStr, user, pwd);
 			stmt = dbConn.createStatement();
-			System.out.println("Create DB Connection OK!");
 		} catch(SQLException sql_excp) {
 			sql_excp.printStackTrace();
 		} catch(Exception e) {
@@ -66,40 +65,32 @@ public class DbConnection {
 	}
   
 	public ResultSet ExecuteSQL(String sqlSentence) throws SQLException {
+		System.out.println(sqlSentence);
 		resultSet = stmt.executeQuery(sqlSentence);
 		return resultSet;
 	}
 	
 	public String GetJsonResult(String sqlSentence) throws SQLException {
+		System.out.println(sqlSentence);
 		resultSet = stmt.executeQuery(sqlSentence);
-		
-		System.out.println("Fetch results from table OK!");
-		
+			
 		JSONArray array= new JSONArray();
 		
 		ResultSetMetaData metaData = resultSet.getMetaData();
 		
 		int colCount = metaData.getColumnCount();
-//		resultSet.last();
-//		int rowCount = resultSet.getRow();
-//		System.out.println("colCount: " + colCount  + "\nrowCount: " + rowCount);
-//		for (int i = 0; i < colCount; i ++) {
-//			System.out.println(metaData.getColumnName(i+1));
-//		}
 		
 		if (resultSet.first()) {
 		    do {
 				JSONObject jsonObj = new JSONObject();
 				for(int i = 1; i < colCount + 1; i++) {
 					if (null != resultSet.getObject(i)) {
-						System.out.println(metaData.getColumnLabel(i) + " | " + resultSet.getObject(i).toString());
 						jsonObj.put(metaData.getColumnLabel(i), resultSet.getObject(i).toString());
 					}
 				}
 				array.add(jsonObj);
 			}while(resultSet.next());
 		}
-//		System.out.println("Transfor to String OK: " + array.toString());
 		return array.toString();
 	}
   
@@ -108,6 +99,7 @@ public class DbConnection {
 	}
 
 	public int UpdateSQL(String sqlSentence) throws SQLException,NamingException {
+		System.out.println(sqlSentence);
 		int i=-1;
 		i=stmt.executeUpdate(sqlSentence);
 		return i;
