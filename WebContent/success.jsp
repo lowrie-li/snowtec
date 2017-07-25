@@ -20,17 +20,12 @@ td,th {
 		//驱动程序名 
 		String sql_str = "select * from UserRole";
 		DbConnection dbconn = new DbConnection();
-		ResultSet rs = dbconn.ExecuteSQL(sql_str);
+		ResultSet rs = dbconn.RunQuery(sql_str);
 	%>
 	<br>
 	<br>
 	<table align="center">
 		<tr>
-			<th>
-				<%
-					out.print("编号");
-				%>
-			</th>
 			<th>
 				<%
 					out.print("用户名");
@@ -41,6 +36,11 @@ td,th {
 					out.print("密码");
 				%>
 			</th>
+			<th>
+				<%
+					out.print("员工编号");
+				%>
+			</th>
 		</tr>
 
 		<%
@@ -49,7 +49,7 @@ td,th {
 		<tr>
 			<td>
 				<%
-					out.print(rs.getInt(1));
+					out.print(rs.getString(1));
 				%>
 			</td>
 			<td>
@@ -59,7 +59,7 @@ td,th {
 			</td>
 			<td>
 				<%
-					out.print(rs.getString(3));
+					out.print(rs.getInt(3));
 				%>
 			</td>
 		</tr>

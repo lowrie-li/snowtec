@@ -25,7 +25,7 @@ public class RegisterAction implements Action{
 			DbConnection dbconn = new DbConnection();
 			
 			String sql_str = "select * from UserRole where username = '" + id + "' and password = '" + pwd + "';";
-			ResultSet rs = dbconn.ExecuteSQL(sql_str);
+			ResultSet rs = dbconn.RunQuery(sql_str);
 			
 			if(rs.next()) {
 				request.getSession().setAttribute("errno","none");

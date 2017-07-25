@@ -100,7 +100,7 @@
 			<div title="销售管理" style="padding: 10px;">
 				<ul class="easyui-tree">
 					<li><a href="#" onclick="addTab('销售报表','SalesRpt')">销售报表</a></li>
-					<li><a href="#" onclick="addTab('客户管理','CustomCrud.jsp')">客户管理</a></li>
+					<li><a href="#" onclick="addTab('客户管理','CustomerCrud.jsp')">客户管理</a></li>
 					<li><a href="#" onclick="addTab('订单管理','InIndentCrud')">订单管理</a></li>
 				</ul>
 			</div>

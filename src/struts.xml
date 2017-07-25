@@ -8,7 +8,7 @@
 	<constant name="struts.locale" value="zh_CN" />
 	<constant name="struts.i18n.encoding" value="utf-8" />
 	<package name="default" namespace="/" extends="struts-default">
-		<default-action-ref name="login" />
+		<default-action-ref name="login" ></default-action-ref>
 <!--  		<global-results>
 			<result name="error">/failed.jsp </result>
 			<result name="success">/success.jsp </result>
@@ -20,16 +20,16 @@
 		<action name="ajaxAction" class="com.snowtec.AjaxAction" method="search">
 			<result name="success">/success.jsp</result>
 		</action>
-		<action name="addCustomer" class="com.snowtec.AjaxAction" method="add">
+ 		<action name="addCustomer" class="com.snowtec.CustomerAction" method="add">
 			<result name="success">/success.jsp</result>
 		</action>
-		<action name="searchCustomer" class="com.snowtec.AjaxAction" method="search">
+		<action name="searchCustomer" class="com.snowtec.CustomerAction" method="search">
 			<result name="success">/success.jsp</result>
 		</action>
-		<action name="updateCustomer" class="com.snowtec.AjaxAction" method="update">
+		<action name="updateCustomer" class="com.snowtec.CustomerAction" method="update">
 			<result name="success">/success.jsp</result>
 		</action>
-		<action name="deleteCustomer" class="com.snowtec.AjaxAction" method="delete">
+		<action name="deleteCustomer" class="com.snowtec.CustomerAction" method="delete">
 			<result name="success">/success.jsp</result>
 		</action>
 		<action name="loginAction" class="com.snowtec.LoginAction" method="execute">

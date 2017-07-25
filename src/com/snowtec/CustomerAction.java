@@ -5,7 +5,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class AjaxAction extends ActionSupport{
+public class CustomerAction extends ActionSupport{
 	/**
 	 * 
 	 */
@@ -257,47 +257,9 @@ public class AjaxAction extends ActionSupport{
 		return search(condition);
 	}
 	
-/*	public String json() throws Exception {
-		String rsJsonStr= dbConn.GetJsonResult("select * from Companies;");
-		System.out.println(rsJsonStr);
-		try {
-			ServletActionContext.getResponse().setCharacterEncoding("utf-8");
-			ServletActionContext.getResponse().getWriter().println(rsJsonStr);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		return Action.NONE;
-	}
-*/
 	@Override
 	public String execute() throws Exception {
 		return "success";
 	}
-/*	
-    public static void main(String args[]) throws SQLException, IOException { 
-        System.out.println("Hello World!"); 
-        
-        String chkExist = "SELECT * FROM Companies WHERE shrtName = 'sinotec';";
-		System.out.println(chkExist);
-		try {
-			if(dbConn.QuerySQL(chkExist).first()) {
-				String delStr = "DELETE FROM Companies WHERE shrtName = 'sinotec';";
-				int rs = dbConn.UpdateSQL(delStr);
-				if (rs == 0) {
-					System.out.println("No row delete!");
-				} else {
-					System.out.println("Delete successed!");
-				}
-			} else {
-				System.out.println("客户不存在！");
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		char i = (char) System.in.read(); 
-        System.out.println("your char is :"+i);
-    } 
-*/
+
 }

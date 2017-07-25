@@ -48,6 +48,7 @@ public class DbConnection {
 			Class.forName(driverCls);
 			dbConn = DriverManager.getConnection(connStr, user, pwd);
 			stmt = dbConn.createStatement();
+			dbConn.setAutoCommit(true);
 		} catch(SQLException sql_excp) {
 			sql_excp.printStackTrace();
 		} catch(Exception e) {
@@ -55,7 +56,7 @@ public class DbConnection {
 		}
 	}
  
-	public PreparedStatement getPrepStmt(String StrSql) throws SQLException {
+	public PreparedStatement GetPrepStmt(String StrSql) throws SQLException {
 		PrepStmt = dbConn.prepareStatement(StrSql);
 		return PrepStmt;
 	}
@@ -64,7 +65,7 @@ public class DbConnection {
 		stmt.setQueryTimeout(times);
 	}
   
-	public ResultSet ExecuteSQL(String sqlSentence) throws SQLException {
+	public ResultSet RunQuery(String sqlSentence) throws SQLException {
 		System.out.println(sqlSentence);
 		resultSet = stmt.executeQuery(sqlSentence);
 		return resultSet;
@@ -98,7 +99,7 @@ public class DbConnection {
 		stmt.addBatch(StrSql);
 	}
 
-	public int UpdateSQL(String sqlSentence) throws SQLException,NamingException {
+	public int RunUpdate(String sqlSentence) throws SQLException,NamingException {
 		System.out.println(sqlSentence);
 		int i=-1;
 		i=stmt.executeUpdate(sqlSentence);
@@ -154,7 +155,7 @@ public class DbConnection {
 		}catch (Exception ex) {}
 	}
 
-	public void setAutoCommit(boolean isAutoCommit){
+	public void SetAutoCommit(boolean isAutoCommit){
 		try {
 			dbConn.setAutoCommit(isAutoCommit);
 		} catch (SQLException e) {

@@ -22,7 +22,7 @@
  	
 	function InitGrid(queryData) {
 	    $('#grid').datagrid({   //定位到Table标签，Table标签的ID是grid
-	        url: 'ajaxAction',   //指向后台的Action来获取当前菜单的信息的Json格式的数据
+	        url: 'searchCustomer',   //指向后台的Action来获取当前菜单的信息的Json格式的数据
 /* 	        contentType: "application/json", */
 	        title: '客户列表',
 	        iconCls: 'icon-view',
@@ -92,6 +92,7 @@
 	            iconCls: 'icon-remove',
 	            handler: function () {
 	            	deleteCustomer();
+	            	$("#grid").datagrid("reload");
 	            }
 	        }, '-', {
 	            id: 'btnReload',
@@ -169,7 +170,7 @@
 		var row = $('#grid').datagrid('getSelected');
 		$('#grid').datagrid('uncheckAll');
 		if (row) {
-			$.messager.confirm('Confirm', '是否确定删除改用户',
+			$.messager.confirm('Confirm', '是否确定删除该客户信息',
 				function(r) {
 	                if (r) {
 	                    $.post('deleteCustomer', 
@@ -177,20 +178,23 @@
 	                 			shrtName: row.shrtName
 	                    	   },
 	                    	   function(result) {
+	                    		   alert("XXXX");
 	                    		   $('#grid').datagrid('reload');
 	                    		   var result = eval('(' + result + ')');
 	                        		if (result.success) {
-	                           			 $('#grid').datagrid('reload');
+	                        			alert("YYYY");
+	                           			$('#grid').datagrid('reload');
 	                       			} else {
-	                           			 $.messager.show({
+	                       				alert("ZZZZ");
+	                           			$.messager.show({
 	                               						 title: 'Error',
 	                               						 msg: result.errorMsg
-	                            		 });
+	                            		});
 	                        		}
 	                    	   },
 	                    	   'json'
 						);
-				}
+					}
 			});
 		} else {
 			$.messager.alert("提示", "请选中需要删除的客户！")
